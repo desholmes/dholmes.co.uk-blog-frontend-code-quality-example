@@ -2,10 +2,14 @@
 
 Follow the [Frontend Development Code Quality - What’s Good Enough?](https://dholmes/co.uk/blog/frontend-development-code-quality/) blog post with this example repo.
 
+A simple "Hello World" application:
+
+![hello-world](https://user-images.githubusercontent.com/1830123/137368817-6215896d-c379-4582-97f3-53aad8574986.png)
+
 This project uses:
 
 1. [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
-2. [Node v16.10.0](https://nodejs.org/en/) (TODO: v14.17.6?)
+2. [Node v14.17.6](https://nodejs.org/en/)
 3. [SaSS](https://sass-lang.com/)
 4. [Parcel Bundler](https://parceljs.org/)
 5. [ESLint](https://eslint.org/)
@@ -24,13 +28,13 @@ This project uses:
 |Command|Description|
 |---|---|
 |`npm run clean`|Cleans the [./dist](./dist) directory|
-|`npm build`|Runs `npm run clean` and `parcel build`|
-|`npm build-serve`|Runs `http-server dist/` to statically serve the build in the [./dist](./dist) directory|
-|`npm lint`|Runs [ESLint](https://eslint.org/) with 0 warnings argument|
-|`npm lint-fix`|Runs [ESLint](https://eslint.org/) with 0 warnings and `--fix` arguments|
-|`npm prettier`|Runs [Prettier](https://prettier.io/) with `--check` argument|
-|`npm prettier-fix`|Runs [Prettier](https://prettier.io/) with `--write` argument|
-|`npm prettier-lint-fix`|Runs `prettier-fix` and `lint-fix` NPM scripts|
+|`npm run build`|Runs `npm run clean` and `parcel build`|
+|`npm run build-serve`|Runs `http-server dist/` to statically serve the build in the [./dist](./dist) directory|
+|`npm run lint`|Runs [ESLint](https://eslint.org/) with 0 warnings argument|
+|`npm run lint-fix`|Runs [ESLint](https://eslint.org/) with 0 warnings and `--fix` arguments|
+|`npm run prettier`|Runs [Prettier](https://prettier.io/) with `--check` argument|
+|`npm run prettier-fix`|Runs [Prettier](https://prettier.io/) with `--write` argument|
+|`npm run prettier-lint-fix`|Runs `prettier-fix` and `lint-fix` NPM scripts|
 |`npm start`|Runs a local development server using the [Parcel Bundler](https://parceljs.org/)|
 |`npm test`|Runs the unit test cases using [Jest](https://jestjs.io/)|
-|`npm test-watch`|Runs [Jest](https://jestjs.io/) with the `--watchAll` argument|
+|`npm run test-watch`|Runs [Jest](https://jestjs.io/) with the `--watchAll` argument|
