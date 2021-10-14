@@ -4,6 +4,7 @@
   "description": "Example frontend development code quality repo for the blog post: https://dholmes.co.uk/blog/frontend-development-code-quality/",
   "repository": "https://github.com/desholmes/dholmes.co.uk-blog-frontend-code-quality-example",
   "scripts": {
+    "audit": "npm audit --audit-level=high",
     "clean": "rm -rf ./dist/*.css ./dist/*.map ./dist/*.html ./dist/*.js ./dist/*.jpg ./dist/*.png ./dist/*.ico",
     "build": "npm run clean && parcel build ./src/index.html",
     "build-serve": "http-server dist/",
