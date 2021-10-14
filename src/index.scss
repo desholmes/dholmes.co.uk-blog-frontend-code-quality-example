@@ -18,6 +18,12 @@ main {
   }
 }
 
+a.read-more {
+  position: absolute;
+  display: block;
+  padding: 0.5em;
+}
+
 .github-fork-ribbon {
   position: fixed;
   top: -30px;
