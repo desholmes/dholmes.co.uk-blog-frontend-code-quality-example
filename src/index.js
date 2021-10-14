@@ -3,8 +3,8 @@ import HelloWorld from "./modules/HelloWorld/HelloWorld";
 const init = () => {
   const greetingDom = document.querySelector(".hello-world");
   const greeting = HelloWorld();
-  greetingDom.innerHTML = `${greeting}.`; 
-}
+  greetingDom.innerHTML = `${greeting}.`;
+};
 
 if (
   document.readyState === "complete" ||

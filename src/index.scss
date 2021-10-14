@@ -1,9 +1,49 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background-color: bisque;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 800;
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: bisque;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 800;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+
+  a,
+  a:visited,
+  :active {
+    color: black;
+  }
+}
+
+a.read-more {
+  position: absolute;
+  display: block;
+  padding: 0.5em;
+}
+
+.github-fork-ribbon {
+  position: fixed;
+  top: -30px;
+  right: -30px;
+  font-size: 0.77rem;
+
+  &::after {
+    content: "GitHub";
+  }
+
+  /* Tablet */
+  @media only screen and (min-width: 550px) {
+    top: 0;
+    right: 0;
+    font-size: 1rem;
+
+    &::after {
+      content: "Fork me on GitHub";
+    }
+  }
 }

@@ -12,25 +12,24 @@
     "prettier": "./node_modules/.bin/prettier --check ./src/",
     "prettier-fix": "./node_modules/.bin/prettier --write ./src/",
     "prettier-lint-fix": "npm run prettier-fix && npm run lint-fix",
-    "start": "./node_modules/.bin/parcel ./index.html",
+    "start": "./node_modules/.bin/parcel ./src/index.html",
     "test": "jest --coverage",
     "test-watch": "jest --watchAll"
   },
   "author": "Des Holmes https://github.com/desholmes",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "7.15.8",
-    "@babel/preset-env": "7.15.8",
-    "@parcel/transformer-sass": "2.0.0-rc.0",
-    "eslint": "7.32.0",
-    "eslint-config-airbnb-base": "14.2.1",
-    "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-import": "2.24.2",
-    "eslint-plugin-jest": "25.0.6",
-    "http-server": "13.0.2",
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@parcel/transformer-sass": "^2.0.0-rc.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jest": "^25.0.6",
+    "http-server": "^13.0.2",
     "jest": "27.2.5",
-    "parcel": "2.0.0-rc.0",
-    "prettier": "2.1.2",
-    "sass": "1.42.1"
+    "parcel": "^2.0.0-rc.0",
+    "prettier": "^2.1.2"
   }
 }
