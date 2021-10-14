@@ -6,6 +6,11 @@ A simple "[Hello World](https://hello.dholmes.co.uk)" application.
 
 ![hello-world](https://user-images.githubusercontent.com/1830123/137368817-6215896d-c379-4582-97f3-53aad8574986.png)
 
+Remotes:
+
+1. [Azure DevOps](https://dev.azure.com/codecupltd/DesHolmes/_git/dholmes.co.uk-blog-frontend-code-quality-example)
+2. [GitHub](https://github.com/desholmes/dholmes.co.uk-blog-frontend-code-quality-example)
+
 This project uses:
 
 1. [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
