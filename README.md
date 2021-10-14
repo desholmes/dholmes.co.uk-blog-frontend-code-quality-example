@@ -5,7 +5,7 @@ Follow the [Frontend Development Code Quality - What’s Good Enough?](https://d
 This project uses:
 
 1. [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
-2. [Node v16.10.0](https://nodejs.org/en/)
+2. [Node v16.10.0](https://nodejs.org/en/) (TODO: v14.17.6?)
 3. [SaSS](https://sass-lang.com/)
 4. [Parcel Bundler](https://parceljs.org/)
 5. [ESLint](https://eslint.org/)
