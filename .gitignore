@@ -4,3 +4,6 @@
 coverage
 dist
 node_modules
+cobertura-coverage.xml
+junit.xml
+test-report.html

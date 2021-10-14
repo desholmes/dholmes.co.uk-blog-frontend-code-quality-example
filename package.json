@@ -4,6 +4,7 @@
   "description": "Example frontend development code quality repo for the blog post: https://dholmes.co.uk/blog/frontend-development-code-quality/",
   "repository": "https://github.com/desholmes/dholmes.co.uk-blog-frontend-code-quality-example",
   "scripts": {
+    "audit": "npm audit --audit-level=high",
     "clean": "rm -rf ./dist/*.css ./dist/*.map ./dist/*.html ./dist/*.js ./dist/*.jpg ./dist/*.png ./dist/*.ico",
     "build": "npm run clean && parcel build ./src/index.html",
     "build-serve": "http-server dist/",
@@ -13,7 +14,10 @@
     "prettier-fix": "./node_modules/.bin/prettier --write ./src/",
     "prettier-lint-fix": "npm run prettier-fix && npm run lint-fix",
     "start": "./node_modules/.bin/parcel ./src/index.html",
-    "test": "jest --coverage",
+    "test": "jest --coverage ./src/modules/**/*.test.js",
+    "test-ci": "jest --reporters=jest-junit --coverage=true  --coverageDirectory=./coverage --coverageReporters=cobertura html --testResultsProcessor=./node_modules/jest-html-reporter --bail=true",
+    "test-cov-serve": "http-server coverage/",
+    "test-report-serve": "http-server test-report.html",
     "test-watch": "jest --watchAll"
   },
   "author": "Des Holmes https://github.com/desholmes",
@@ -29,7 +33,14 @@
     "eslint-plugin-jest": "^25.0.6",
     "http-server": "^13.0.2",
     "jest": "27.2.5",
+    "jest-html-reporter": "^3.4.1",
+    "jest-junit": "^13.0.0",
     "parcel": "^2.0.0-rc.0",
     "prettier": "^2.1.2"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|scss)$": "<rootDir>/src/__mocks__/styleMock.js"
+    }
   }
 }
