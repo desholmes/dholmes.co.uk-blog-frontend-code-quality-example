@@ -1,0 +1,50 @@
+name: hello-example-$(BuildID)
+
+trigger:
+  branches:
+    include:
+      - main
+      - feature/*
+      - bugfix/*
+      - hotfix/*
+
+pool:
+  vmImage: "ubuntu-18.04"
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: "14.x"
+    displayName: "Install Node.js"
+
+  - script: |
+      npm audit --audit-level=high
+    displayName: "NPM: Audit dependencies (high)"
+    
+  - script: |
+      npm ci
+    displayName: "NPM: install deps"
+
+  - script: |
+      npm run lint
+    displayName: "Tests: Lint"
+
+  - script: |
+      npm run test-ci
+    displayName: "Tests: Jest"
+
+  - script: |
+      npm run build
+    displayName: "Prod build"
+
+  - task: PublishTestResults@1
+    condition: succeededOrFailed()
+    inputs:
+      testRunner: JUnit
+      testResultsFiles: '**/junit.xml'
+
+  - task: PublishCodeCoverageResults@1
+    condition: succeededOrFailed()
+    inputs:
+      codeCoverageTool: "Cobertura"
+      summaryFileLocation: "**/coverage/cobertura-coverage.xml"

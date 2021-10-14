@@ -37,4 +37,7 @@ This project uses:
 |`npm run prettier-lint-fix`|Runs `prettier-fix` and `lint-fix` NPM scripts|
 |`npm start`|Runs a local development server using the [Parcel Bundler](https://parceljs.org/)|
 |`npm test`|Runs the unit test cases using [Jest](https://jestjs.io/)|
+|`npm run test-cov-serve`|Runs `http-serve` to statically serve the unit test coverage reports|
+|`npm run test-reprot-serve`|Runs `http-serve` to statically serve the unit test report|
+|`npm run test-ci`|Runs the unit test cases using [Jest](https://jestjs.io/) and generates reports|
 |`npm run test-watch`|Runs [Jest](https://jestjs.io/) with the `--watchAll` argument|
