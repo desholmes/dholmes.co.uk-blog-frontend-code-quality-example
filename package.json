@@ -5,7 +5,7 @@
   "repository": "https://github.com/desholmes/dholmes.co.uk-blog-frontend-code-quality-example",
   "scripts": {
     "clean": "rm -rf ./dist/*.css ./dist/*.map ./dist/*.html ./dist/*.js ./dist/*.jpg ./dist/*.png ./dist/*.ico",
-    "build": "npm run clean && parcel build ./src/index.html",
+    "build": "npm run clean && parcel build index.html",
     "build-serve": "http-server dist/",
     "lint": "./node_modules/.bin/eslint --max-warnings=0 --ext=js src",
     "lint-fix": "./node_modules/.bin/eslint --max-warnings=0 --fix --ext=js src",
@@ -19,18 +19,17 @@
   "author": "Des Holmes https://github.com/desholmes",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "7.15.8",
-    "@babel/preset-env": "7.15.8",
-    "@parcel/transformer-sass": "2.0.0-rc.0",
-    "eslint": "7.32.0",
-    "eslint-config-airbnb-base": "14.2.1",
-    "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-import": "2.24.2",
-    "eslint-plugin-jest": "25.0.6",
-    "http-server": "13.0.2",
-    "jest": "27.2.5",
-    "parcel": "2.0.0-rc.0",
-    "prettier": "2.1.2",
-    "sass": "1.43.2"
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@parcel/transformer-sass": "^2.0.0-rc.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jest": "^25.0.6",
+    "http-server": "^13.0.2",
+    "jest": "^27.2.5",
+    "parcel": "^2.0.0-rc.0",
+    "prettier": "^2.1.2"
   }
 }
