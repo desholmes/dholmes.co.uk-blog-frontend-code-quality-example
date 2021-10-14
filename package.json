@@ -1,0 +1,36 @@
+{
+  "name": "dholmes.co.uk-blog-frontend-code-quality-example",
+  "version": "0.1.0",
+  "description": "Example frontend development code quality repo for the blog post: https://dholmes.co.uk/blog/frontend-development-code-quality/",
+  "repository": "https://github.com/desholmes/dholmes.co.uk-blog-frontend-code-quality-example",
+  "scripts": {
+    "clean": "rm -rf ./dist/*.css ./dist/*.map ./dist/*.html ./dist/*.js ./dist/*.jpg ./dist/*.png ./dist/*.ico",
+    "build": "npm run clean && parcel build ./src/index.html",
+    "build-serve": "http-server dist/",
+    "lint": "./node_modules/.bin/eslint --max-warnings=0 --ext=js src",
+    "lint-fix": "./node_modules/.bin/eslint --max-warnings=0 --fix --ext=js src",
+    "prettier": "./node_modules/.bin/prettier --check ./src/",
+    "prettier-fix": "./node_modules/.bin/prettier --write ./src/",
+    "prettier-lint-fix": "npm run prettier-fix && npm run lint-fix",
+    "start": "./node_modules/.bin/parcel ./index.html",
+    "test": "jest --coverage",
+    "test-watch": "jest --watchAll"
+  },
+  "author": "Des Holmes https://github.com/desholmes",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "7.15.8",
+    "@babel/preset-env": "7.15.8",
+    "@parcel/transformer-sass": "2.0.0-rc.0",
+    "eslint": "7.32.0",
+    "eslint-config-airbnb-base": "14.2.1",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-import": "2.24.2",
+    "eslint-plugin-jest": "25.0.6",
+    "http-server": "13.0.2",
+    "jest": "27.2.5",
+    "parcel": "2.0.0-rc.0",
+    "prettier": "2.1.2",
+    "sass": "1.42.1"
+  }
+}
