@@ -2,7 +2,7 @@
 
 Follow the [Frontend Development Code Quality - What’s Good Enough?](https://dholmes/co.uk/blog/frontend-development-code-quality/) blog post with this example repo.
 
-A simple "Hello World" application:
+A simple "[Hello World](https://hello.dholmes.co.uk)" application.
 
 ![hello-world](https://user-images.githubusercontent.com/1830123/137368817-6215896d-c379-4582-97f3-53aad8574986.png)
 
