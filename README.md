@@ -10,6 +10,7 @@ Remotes:
 
 1. [Azure DevOps](https://dev.azure.com/codecupltd/DesHolmes/_git/dholmes.co.uk-blog-frontend-code-quality-example)
 2. [GitHub](https://github.com/desholmes/dholmes.co.uk-blog-frontend-code-quality-example)
+3. [GitLab](https://gitlab.com/codecupltd/dholmes.co.uk-blog-frontend-code-quality-example)
 
 This project uses:
 
