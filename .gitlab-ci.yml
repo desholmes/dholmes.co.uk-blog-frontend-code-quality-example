@@ -1,0 +1,23 @@
+
+image: node:14.17.6
+
+# Cache modules in between jobs
+cache:
+  key: $CI_COMMIT_REF_SLUG
+  paths:
+    - .npm/
+
+npm_audit:
+  stage: build
+  script: npm audit --audit-level=high
+
+before_script:
+  - npm ci --cache .npm --prefer-offline
+
+test_lint:
+  stage: test
+  script: npm run lint
+
+test_jest:
+  stage: test
+  script: npm run test-ci
