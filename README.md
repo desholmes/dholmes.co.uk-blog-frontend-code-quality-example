@@ -15,7 +15,7 @@ Remotes:
 This project uses:
 
 1. [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
-2. [Node v14.17.6](https://nodejs.org/en/)
+2. [Node v16.14.0](https://nodejs.org/en/)
 3. [SaSS](https://sass-lang.com/)
 4. [Parcel Bundler](https://parceljs.org/)
 5. [ESLint](https://eslint.org/)
