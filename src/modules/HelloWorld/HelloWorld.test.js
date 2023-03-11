@@ -1,4 +1,5 @@
 import HelloWorld from "./HelloWorld";
+// const HelloWorld = require("./HelloWorld")
 
 const greetings = ["Hello", "Hi", "Greetings", "Yo"];
 
