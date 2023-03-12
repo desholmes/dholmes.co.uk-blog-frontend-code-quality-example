@@ -1,6 +1,6 @@
 {
   "name": "dholmes.co.uk-blog-frontend-code-quality-example",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Example frontend development code quality repo for the blog post: https://dholmes.co.uk/blog/frontend-development-code-quality/",
   "repository": "https://github.com/desholmes/dholmes.co.uk-blog-frontend-code-quality-example",
   "scripts": {

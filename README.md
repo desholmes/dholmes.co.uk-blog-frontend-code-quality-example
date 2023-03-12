@@ -2,7 +2,7 @@
 
 Follow these blog posts related to this repo:
 
-* [A Simple Docker Tagging Strategy](https://dholmes/co.uk/blog/simple-docker-tagging-strategy/)
+* [A Simple Docker Tagging Strategy](https://dholmes.co.uk/blog/simple-docker-tagging-strategy/)
 * [Frontend Development Code Quality - What's Good Enough?](https://dholmes/co.uk/blog/frontend-development-code-quality/)
 
 A simple "[Hello World](https://hello.dholmes.co.uk)" application.

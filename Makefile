@@ -16,6 +16,18 @@ build-push:
 	make build
 	make push
 
+delete-rcs:
+	 docker run \
+		-e AZURE_TENANT=$(AZURE_TENANT) \
+		-e AZURE_SUBSCRIPTION=$(AZURE_SUBSCRIPTION) \
+		-e REGISTRY_NAME=$(DOCKER_REGISTRY) \
+		-e REGISTRY_USERNAME=$(ACR_USERNAME) \
+		-e REGISTRY_PASSWORD=$(ACR_PASSWORD) \
+		-e REPO=$(DOCKER_REPO) \
+		-e TAG=$(TAG) \
+		-e DRY_RUN=$(DRY_RUN) \
+	desholmes/acr-rc-deleter:1.0.0
+
 push:
 	docker push $(DOCKER_REGISTRY)/$(DOCKER_REPO):$(DOCKER_TAG)
 

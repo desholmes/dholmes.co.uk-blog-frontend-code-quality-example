@@ -7,3 +7,4 @@ node_modules
 test-report
 cobertura-coverage.xml
 junit.xml
+.env
