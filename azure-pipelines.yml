@@ -1,5 +1,13 @@
 name: hello-example-$(BuildID)
 
+variables:
+  - group: 'ACR'
+  - group: 'AZURE'
+  - name: acr-name
+    value: 'dholmes'
+  - name: docker-check-image
+    value: 'hello-world'
+
 trigger:
   branches:
     include:
@@ -9,13 +17,86 @@ trigger:
       - hotfix/*
 
 pool:
-  vmImage: "ubuntu-18.04"
+  vmImage: "ubuntu-latest"
 
 steps:
   - task: NodeTool@0
     inputs:
-      versionSpec: 16.14.0
+      versionSpec: 18.12.1
     displayName: "Install Node.js"
+
+  - script: |
+      VERSION=$(node -pe "require('./package.json').version")
+      if [ -z "$VERSION" ]
+      then
+        echo "Unable to find version in package.json."
+        exit 1
+      fi
+      echo "Version is set: $VERSION"
+    displayName: "Check version is set"
+    enabled: true
+
+  - script: |
+      VERSION=$(node -pe "require('./package.json').version")
+      DOCKER_REGISTRY=$(acr-name).azurecr.io
+      DOCKER_REPO=$(docker-check-image)
+
+      ##### Main ie: 1.0.0
+      if [ "$(Build.SourceBranchName)" = "main" ]
+      then
+        BRANCH_TYPE="main"
+        DOCKER_TAG=$VERSION
+        DOCKER_TAG_CHECK_VERSION=$VERSION
+
+      ##### All other branch types ie: 1.0.0-rc1
+      else
+        BRANCH_TYPE="feature|bugfix|hotfix"
+        RC_VERSION=$VERSION"-rc$(Build.BuildId)"
+        DOCKER_TAG=$RC_VERSION
+        DOCKER_TAG_CHECK_VERSION=$VERSION
+      fi
+
+      echo '##vso[task.setvariable variable=BRANCH_TYPE]'$BRANCH_TYPE
+      echo '##vso[task.setvariable variable=DOCKER_REGISTRY]'$DOCKER_REGISTRY
+      echo '##vso[task.setvariable variable=DOCKER_REPO]'$DOCKER_REPO
+      echo '##vso[task.setvariable variable=DOCKER_TAG]'$DOCKER_TAG
+      echo '##vso[task.setvariable variable=DOCKER_TAG_CHECK_VERSION]'$DOCKER_TAG_CHECK_VERSION
+
+      # RC for all other branches except main
+      if [ "$BRANCH_TYPE" != "main" ]
+      then
+        echo '##vso[task.setvariable variable=RC_VERSION]'$RC_VERSION
+      fi
+
+      echo "SourceBranchName: $(Build.SourceBranchName)"
+      echo "SourceBranch: $(Build.SourceBranch)"
+      echo "BRANCH_TYPE: $BRANCH_TYPE"
+      echo "DOCKER_REGISTRY: $DOCKER_REGISTRY"
+      echo "DOCKER_REPO: $DOCKER_REPO"
+      echo "DOCKER_TAG_CHECK_VERSION: $DOCKER_TAG_CHECK_VERSION"
+      echo "DOCKER_TAG: $DOCKER_TAG"
+
+      # Output for all rc branches except main
+      if [ "$BRANCH_TYPE" != "main" ]
+      then
+        echo "RC_VERSION: $RC_VERSION"
+      fi
+
+    displayName: "Set variables"
+    enabled: true
+
+  - script: |
+      CREDENTIALS=$(echo -n "$(ACR_USERNAME):$(ACR_PASSWORD)" | base64 -w 0)
+      REMOTE_TAG_LIST=$(curl -s -H "Authorization: Basic $CREDENTIALS" https://$(acr-name).azurecr.io/v2/$(docker-check-image)/tags/list?n=1000)
+      if $(echo $REMOTE_TAG_LIST | grep --quiet "\"$(DOCKER_TAG_CHECK_VERSION)\"")
+      then
+        echo "ERROR: Version $(DOCKER_TAG_CHECK_VERSION) already exists in ACR for docker image $(docker-check-image), bump the version in package.json"
+        exit 1
+      else
+        echo "Version $(DOCKER_TAG_CHECK_VERSION) doesn't exist in ACR"
+      fi
+    displayName: "Docker: Check version is valid"
+    enabled: true
 
   - script: |
       npm audit --audit-level=high
@@ -30,12 +111,46 @@ steps:
     displayName: "Tests: Lint"
 
   - script: |
-      npm run test-ci
+      npm run test:ci
     displayName: "Tests: Jest"
 
   - script: |
-      npm run build
-    displayName: "Prod build"
+        echo "On '$(BRANCH_TYPE)' branch, building and pushing app docker image for version $DOCKER_TAG"
+
+        # Build image
+        docker build --progress plain -t $(DOCKER_REGISTRY)/$(DOCKER_REPO):$(DOCKER_TAG) .
+
+        # Authenticate
+        echo $(ACR_PASSWORD) | docker login https://$(acr-name).azurecr.io --username $(ACR_USERNAME) --password-stdin
+
+        # Build image
+        docker push $(DOCKER_REGISTRY)/$(DOCKER_REPO):$(DOCKER_TAG)
+
+    displayName: "Docker: Build and push app image"
+    enabled: true
+
+  - script: |
+        if [ "$(Build.SourceBranchName)" = "main" ]
+        then
+          echo "On main, cleaning up RC tags for version: $(DOCKER_TAG)"
+
+          docker pull desholmes/acr-rc-deleter:1.0.0
+
+          docker run \
+            -e AZURE_TENANT=$(AZURE_TENANT) \
+            -e AZURE_SUBSCRIPTION=$(AZURE_SUBSCRIPTION) \
+            -e REGISTRY_NAME=$(ACR_REGISTRY_NAME) \
+            -e REGISTRY_USERNAME=$(ACR_USERNAME) \
+            -e REGISTRY_PASSWORD=$(ACR_PASSWORD) \
+            -e REPO=$(DOCKER_REPO) \
+            -e VERSION=$(DOCKER_TAG) \
+            -e DRY_RUN=0 \
+          desholmes/acr-rc-deleter:1.0.0
+
+        else
+          echo "Not on main, no RC tags will be deleted for version: $(DOCKER_TAG)"
+        fi
+    displayName: "Docker: Delete RCs (main)"
 
   - task: PublishTestResults@1
     condition: succeededOrFailed()

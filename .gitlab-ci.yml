@@ -1,5 +1,5 @@
 
-image: node:16.14.0
+image: node:18.12.1
 
 # Cache modules in between jobs
 cache:
@@ -20,4 +20,4 @@ test_lint:
 
 test_jest:
   stage: test
-  script: npm run test-ci
+  script: npm run test:ci
