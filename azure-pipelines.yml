@@ -134,16 +134,14 @@ steps:
         then
           echo "On main, cleaning up RC tags for version: $(DOCKER_TAG)"
 
-          docker pull desholmes/acr-rc-deleter:1.0.0
-
           docker run \
             -e AZURE_TENANT=$(AZURE_TENANT) \
             -e AZURE_SUBSCRIPTION=$(AZURE_SUBSCRIPTION) \
-            -e REGISTRY_NAME=$(ACR_REGISTRY_NAME) \
+            -e REGISTRY_NAME=$(DOCKER_REGISTRY) \
             -e REGISTRY_USERNAME=$(ACR_USERNAME) \
             -e REGISTRY_PASSWORD=$(ACR_PASSWORD) \
             -e REPO=$(DOCKER_REPO) \
-            -e VERSION=$(DOCKER_TAG) \
+            -e TAG=$(DOCKER_TAG) \
             -e DRY_RUN=0 \
           desholmes/acr-rc-deleter:1.0.0
 
