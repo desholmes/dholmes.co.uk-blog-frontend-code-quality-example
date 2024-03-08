@@ -22,7 +22,7 @@ pool:
 steps:
   - task: NodeTool@0
     inputs:
-      versionSpec: 18.12.1
+      versionSpec: 20.9.0
     displayName: "Install Node.js"
 
   - script: |
@@ -96,37 +96,41 @@ steps:
         echo "Version $(DOCKER_TAG_CHECK_VERSION) doesn't exist in ACR"
       fi
     displayName: "Docker: Check version is valid"
-    enabled: true
+    enabled: false
 
   - script: |
       npm audit --audit-level=high
     displayName: "NPM: Audit dependencies (high)"
+    enabled: true
     
   - script: |
       npm ci
     displayName: "NPM: install deps"
+    enabled: true
 
   - script: |
       npm run lint
     displayName: "Tests: Lint"
+    enabled: true
 
   - script: |
       npm run test:ci
     displayName: "Tests: Jest"
+    enabled: true
 
   - script: |
-        echo "On '$(BRANCH_TYPE)' branch, building and pushing app docker image for version $DOCKER_TAG"
+        echo "On '$(BRANCH_TYPE)' branch, building app docker image for version $DOCKER_TAG"
 
         # Build image
         docker build --progress plain -t $(DOCKER_REGISTRY)/$(DOCKER_REPO):$(DOCKER_TAG) .
 
-        # Authenticate
-        echo $(ACR_PASSWORD) | docker login https://$(acr-name).azurecr.io --username $(ACR_USERNAME) --password-stdin
+        # Authenticate (disabled)
+        #echo $(ACR_PASSWORD) | docker login https://$(acr-name).azurecr.io --username $(ACR_USERNAME) --password-stdin
 
-        # Build image
-        docker push $(DOCKER_REGISTRY)/$(DOCKER_REPO):$(DOCKER_TAG)
+        # Build image (disabled)
+        #docker push $(DOCKER_REGISTRY)/$(DOCKER_REPO):$(DOCKER_TAG)
 
-    displayName: "Docker: Build and push app image"
+    displayName: "Docker: Build app image"
     enabled: true
 
   - script: |
@@ -149,6 +153,7 @@ steps:
           echo "Not on main, no RC tags will be deleted for version: $(DOCKER_TAG)"
         fi
     displayName: "Docker: Delete RCs (main)"
+    enabled: false
 
   - task: PublishTestResults@1
     condition: succeededOrFailed()

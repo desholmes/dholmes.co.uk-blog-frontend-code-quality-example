@@ -2,8 +2,8 @@
 
 Follow these blog posts related to this repo:
 
-* [A Simple Docker Tagging Strategy](https://dholmes.co.uk/blog/simple-docker-tagging-strategy/)
 * [Frontend Development Code Quality - What's Good Enough?](https://dholmes/co.uk/blog/frontend-development-code-quality/)
+* [A Simple Docker Tagging Strategy](https://dholmes.co.uk/blog/simple-docker-tagging-strategy/)
 
 A simple "[Hello World](https://hello.dholmes.co.uk)" application.
 
@@ -18,7 +18,7 @@ Remotes:
 This project uses:
 
 1. [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
-2. [Node v18.12.1 (npm v8.19.2)](https://nodejs.org/en/)
+2. [Node v20.9.0 (npm v10.1.0)](https://nodejs.org/en/)
 3. [SaSS](https://sass-lang.com/)
 4. [Parcel Bundler](https://parceljs.org/)
 5. [ESLint](https://eslint.org/)
@@ -58,5 +58,18 @@ This project uses:
 |Command|Description|
 |---|---|
 |`make build`|Uses Docker build to create an with a tag image based on the version in package.json|
-|`make run`|Runs the built Docker image as a container|
+|`make run`|Runs the built Docker image as a container, viewable at [localhost:5001](http://localhost:5001)|
 |`make stop`|Stops the Docker container|
+
+---
+
+## Credits
+
+* [Des Holmes: Technical Leadership & Product Development](https://dholmes.co.uk)
+  * [About](https://dholmes.co.uk/), [Blog](https://dholmes.co.uk/blog)
+  * **Skills & knowledge**: [Technical Leadership](https://dholmes.co.uk/tags/technical-leadership), [Technical Delivery](https://dholmes.co.uk/tags/technical-delivery), [Product Development](https://dholmes.co.uk/tags/product-development), [SaaS](https://dholmes.co.uk/tags/saas), [DevOps](https://dholmes.co.uk/tags/devops), [Azure Public Cloud](https://dholmes.co.uk/skills)
+  * **Job Titles**: [CTO](https://dholmes.co.uk/tags/cto), [VP Engineering](https://dholmes.co.uk/tags/vp-engineering), [Head of DevOps](https://dholmes.co.uk/tags/devops), [Technical Product Owner](https://dholmes.co.uk/tags/technical-product-owner)
+  * **Related Posts**:
+    * [Working with Des Holmes](https://dholmes.co.uk/testimonials/)
+    * [Managing Technical Debt: A Startup Founder’s Guide](https://dholmes.co.uk/blog/managing-technical-debt-a-startup-founders-guide/)
+    * [Making Your Deployments Boring: What’s Good Enough?](https://dholmes.co.uk/blog/making-your-deployments-boring-whats-good-enough/)

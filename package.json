@@ -1,19 +1,21 @@
 {
   "name": "dholmes.co.uk-blog-frontend-code-quality-example",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Example frontend development code quality repo for the blog post: https://dholmes.co.uk/blog/frontend-development-code-quality/",
   "repository": "https://github.com/desholmes/dholmes.co.uk-blog-frontend-code-quality-example",
+  "source": "./src/index.html",
   "scripts": {
     "audit": "npm audit --audit-level=high",
     "clean": "rm -rf ./dist/*.css ./dist/*.map ./dist/*.html ./dist/*.js ./dist/*.jpg ./dist/*.png ./dist/*.ico",
-    "build": "npm run clean && parcel build ./src/index.html",
+    "build": "npm run clean && parcel build",
     "build:serve": "http-server dist/",
     "lint": "./node_modules/.bin/eslint --max-warnings=0 --ext=js src",
     "lint:fix": "./node_modules/.bin/eslint --max-warnings=0 --fix --ext=js src",
+    "parcel:build": "parcel build",
     "prettier": "./node_modules/.bin/prettier --check ./src/",
     "prettier:fix": "./node_modules/.bin/prettier --write ./src/",
     "prettier-lint:fix": "npm run prettier-fix && npm run lint-fix",
-    "start": "parcel --dist-dir=dist ./src/index.html",
+    "start": "parcel",
     "test": "jest --coverage ./src/modules/**/*.test.js",
     "test:ci": "jest --reporters=jest-junit --coverage=true  --coverageDirectory=./coverage --coverageReporters=cobertura --bail=true",
     "test:cov-serve": "http-server ./coverage",
@@ -23,22 +25,25 @@
   "author": "Des Holmes https://github.com/desholmes",
   "license": "MIT",
   "devDependencies": {
-    "@parcel/babel-plugin-transform-runtime": "2.8.3",
-    "@parcel/babel-preset-env": "2.8.3",
-    "@parcel/transformer-sass": "2.8.3",
-    "eslint": "8.30.0",
+    "@parcel/babel-plugin-transform-runtime": "2.12.0",
+    "@parcel/babel-preset-env": "2.12.0",
+    "@parcel/transformer-sass": "2.12.0",
+    "eslint": "8.57.0",
     "eslint-config-airbnb-base": "15.0.0",
-    "eslint-config-prettier": "8.5.0",
-    "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-jest": "27.2.1",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-import": "2.29.0",
+    "eslint-plugin-jest": "27.9.0",
     "http-server": "14.1.1",
-    "jest": "29.5.0",
-    "jest-html-reporter": "3.7.0",
-    "jest-junit": "15.0.0",
-    "parcel": "2.8.3",
-    "prettier": "2.8.1"
+    "jest": "29.7.0",
+    "jest-html-reporter": "3.10.0",
+    "jest-junit": "16.0.0",
+    "parcel": "2.12.0",
+    "prettier": "3.2.5"
   },
   "dependencies": {
-    "express": "4.18.2"
+    "express": "4.18.3"
+  },
+  "engines": {
+    "node": ">=20.9.0"
   }
 }

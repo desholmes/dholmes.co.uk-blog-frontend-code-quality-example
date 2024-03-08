@@ -1,5 +1,5 @@
 
-image: node:18.12.1
+image: node:20.9.0
 
 # Cache modules in between jobs
 cache:

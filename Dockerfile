@@ -1,6 +1,6 @@
 ### STAGE 1: Build ###
 
-FROM node:18.12.1-alpine as build-stage
+FROM node:20.9.0-alpine as build-stage
 
 WORKDIR /app-src
 
@@ -13,7 +13,7 @@ RUN npm run build
 
 ### STAGE 2: Setup & Run ###
 
-FROM node:18.12.1-alpine
+FROM node:20.9.0-alpine
 
 WORKDIR /app
 

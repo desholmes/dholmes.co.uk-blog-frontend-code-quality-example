@@ -1,7 +1,7 @@
 .PHONY: build build-push push run stop
 
 # Defaults can be overidden in optional .env
-PORT=5000
+PORT=5001
 DOCKER_REGISTRY=dholmes.azurecr.io
 DOCKER_REPO=hello-world
 DOCKER_TAG=$(shell node -pe "require('./package.json').version")
